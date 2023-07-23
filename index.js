@@ -28,7 +28,7 @@ app.use(cors(corsOptions));
 // );
 app.use(express.json());
 
-const port = process.envt.PORT || 4000;
+const port = process.env.PORT || 4000;
 
 app.get('/', (req, res) => {
   res.send("It's up and running!");
