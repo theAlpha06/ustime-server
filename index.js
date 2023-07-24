@@ -46,7 +46,7 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://ustime-client-lovwj2nb1-thealpha06.vercel.app",
     credentials: true,
   }
 });
