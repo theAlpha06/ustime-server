@@ -46,7 +46,7 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
   cors: {
-    origin: "https://ustime-client-ealc5dig1-thealpha06.vercel.app/",
+    origin: "https://ustime-chat.onrender.com",
     credentials: true,
   }
 });
