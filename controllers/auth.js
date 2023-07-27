@@ -2,7 +2,7 @@ import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const maxAge = 7 * 24 * 60 * 60;
+const maxAge = 7 * 24 * 60 * 60 * 1000;
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: maxAge,
@@ -116,7 +116,6 @@ const Login = async (req, res) => {
       }
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       message: "Internal server error",
     });

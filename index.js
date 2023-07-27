@@ -46,7 +46,7 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
   cors: {
-    origin: "https://ustime-chat.onrender.com",
+    origin: ["http://localhost:3000", "https://ustime-chat.onrender.com"],
     credentials: true,
   }
 });
