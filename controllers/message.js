@@ -33,7 +33,8 @@ const getAllMsg = async(req, res) => {
       const projectMessages = messages.map((msg) => {
         return {
           fromSelf: msg.sender.toString() === from,
-          message: msg.message.text
+          message: msg.message.text,
+          timestamp: msg._id.getTimestamp()
         }
       })
       return res.json(projectMessages);
