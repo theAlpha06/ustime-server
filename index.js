@@ -52,6 +52,7 @@ const io = new Server(server, {
 });
 
 global.onlineUsers = new Map();
+global.totalOnlineUsers = new Map();
 
 function getByValue(map, searchValue) {
   for (let [key, value] of map.entries()) {
@@ -65,12 +66,13 @@ io.on("connection", (socket) => {
   global.chatSocket = socket;
   socket.on("add-user", (userId) => {
     onlineUsers.set(userId, socket.id);
-    io.emit("online-users", [...onlineUsers.keys()]);
+    totalOnlineUsers.set(userId, socket.id);
+    io.emit("online-users", [...totalOnlineUsers.keys()]);
   });
 
   socket.on("offline", () => {
-    onlineUsers.delete(getByValue(onlineUsers, `${socket.id}`));
-    io.emit("online-users", onlineUsers);
+    totalOnlineUsers.delete(getByValue(totalOnlineUsers, `${socket.id}`));
+    io.emit("online-users", totalOnlineUsers);
   })
 
 
@@ -81,8 +83,16 @@ io.on("connection", (socket) => {
     }
   })
 
+  socket.on("typing", (data) => {
+    const sendUserSocket = onlineUsers.get(data.to);
+    console.log('first')
+    if (sendUserSocket) {
+      socket.to(sendUserSocket).emit("typing", data);
+    }
+  })
+
   socket.on("disconnect", () => {
-    onlineUsers.delete(getByValue(onlineUsers, `${socket.id}`));
-    io.emit("online-users", onlineUsers);
+    totalOnlineUsers.delete(getByValue(totalOnlineUsers, `${socket.id}`));
+    io.emit("online-users", totalOnlineUsers);
   })
 });
