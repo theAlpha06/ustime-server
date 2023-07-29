@@ -85,7 +85,6 @@ io.on("connection", (socket) => {
 
   socket.on("typing", (data) => {
     const sendUserSocket = onlineUsers.get(data.to);
-    console.log('first')
     if (sendUserSocket) {
       socket.to(sendUserSocket).emit("typing", data);
     }
