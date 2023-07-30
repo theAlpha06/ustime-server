@@ -7,8 +7,10 @@ const setProfilePicture = async (req, res) => {
     const user = await User.findByIdAndUpdate(
       userId,
       {
-        $set: { avatarImage: avatarImage },
-        $setOnInsert: { isAvatarImageSet: true },
+        $set: { 
+          avatarImage: avatarImage,
+          isAvatarImageSet: true,
+        },
       },
       {
         new: true,
