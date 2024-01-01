@@ -5,7 +5,7 @@ import colors from "colors";
 dotenv.config();
 mongoose.set("strictQuery", false);
 
-const DB = process.env.MONGO_URI.replace("<JWT_SECRET>", process.env.JWT_SECRET);
+const DB = process.env.MONGO_URI;
 
 const connectDB = () => {
   mongoose

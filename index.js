@@ -20,12 +20,6 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-// app.use(
-//   cors({
-//     origin: ["http://localhost:3000"],
-//     methods: "GET,POST,PUT,DELETE,OPTIONS",
-//   })
-// );
 app.use(express.json());
 
 const port = process.env.PORT || 4000;
@@ -46,7 +40,7 @@ const server = app.listen(port, () => {
 
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000", "https://ustime-chat.onrender.com"],
+    origin: ["http://191.96.57.27:82/", "http://localhost:3000", "https://ustime-chat.onrender.com"],
     credentials: true,
   }
 });
